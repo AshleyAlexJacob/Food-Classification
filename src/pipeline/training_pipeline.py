@@ -103,13 +103,13 @@ def main():
     # You can change the number of epochs as needed
     epochs = 50
     
-    
+
     train_dir = "data/processed/train"
     test_dir = "data/processed/test"
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     print("Using device:", DEVICE)
     torch.set_default_device(DEVICE)
-    train_loader, test_loader, num_classes, class_names = get_data_loaders(train_dir, test_dir, batch_size=32)
+    train_loader, test_loader, num_classes, class_names = get_data_loaders(train_dir, test_dir,DEVICE,batch_size=32)
     model = CNN(num_classes).to(DEVICE)  # Adjust num_classes as needed
     LEARNING_RATE = 0.001
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)

@@ -1,3 +1,4 @@
+import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
@@ -22,11 +23,16 @@ test_transform = transforms.Compose([
                            std=[0.229, 0.224, 0.225]),
 ])
 
-def get_data_loaders(train_dir, test_dir, batch_size=32):
+def get_data_loaders(train_dir, test_dir, device, batch_size=32):
     train_data = ImageFolder(root=train_dir, transform= train_transform)
     test_data = ImageFolder(root=test_dir, transform=test_transform)
-    train_loader = DataLoader(train_data, batch_size=32, shuffle=True, num_workers=1)
-    test_loader = DataLoader(test_data, batch_size=32, shuffle=False, num_workers=1)
+    train_loader = DataLoader(train_data, batch_size=32, shuffle=True, num_workers=1,
+                               generator=torch.Generator(device=device),
+                              )
+    test_loader = DataLoader(test_data, batch_size=32, shuffle=False, num_workers=1,
+                             
+                                   generator=torch.Generator(device=device),
+                         )
     class_names = train_data.classes
     num_classes = len(class_names)
     print(f'Number of classes: {num_classes}')
