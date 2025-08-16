@@ -110,7 +110,7 @@ def main():
     LEARNING_RATE = 0.001
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
-    epochs = 1
+    epochs = 100
     training_losses, validation_losses, training_accuracies, validation_accuracies = epoch_loop(epochs, model, train_loader, test_loader, optimizer, criterion, DEVICE)
     # Plotting the training and validation losses
     plt.figure(figsize=(12, 6))
