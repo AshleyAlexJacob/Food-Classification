@@ -100,6 +100,10 @@ def epoch_loop(EPOCHS, model, train_loader, test_loader, optimizer, criterion, d
     return training_losses, validation_losses, training_accuracies, validation_accuracies
 
 def main():
+    # You can change the number of epochs as needed
+    epochs = 50
+    
+    
     train_dir = "data/processed/train"
     test_dir = "data/processed/test"
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -110,7 +114,6 @@ def main():
     LEARNING_RATE = 0.001
     optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
-    epochs = 100
     training_losses, validation_losses, training_accuracies, validation_accuracies = epoch_loop(epochs, model, train_loader, test_loader, optimizer, criterion, DEVICE)
     # Plotting the training and validation losses
     plt.figure(figsize=(12, 6))
