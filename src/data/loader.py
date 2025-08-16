@@ -26,10 +26,10 @@ test_transform = transforms.Compose([
 def get_data_loaders(train_dir, test_dir, device, batch_size=32):
     train_data = ImageFolder(root=train_dir, transform= train_transform)
     test_data = ImageFolder(root=test_dir, transform=test_transform)
-    train_loader = DataLoader(train_data, batch_size=32, shuffle=True, num_workers=1,
+    train_loader = DataLoader(train_data, batch_size=32, shuffle=True,
                                generator=torch.Generator(device=device),
                               )
-    test_loader = DataLoader(test_data, batch_size=32, shuffle=False, num_workers=1,
+    test_loader = DataLoader(test_data, batch_size=32, shuffle=False,
                              
                                    generator=torch.Generator(device=device),
                          )
